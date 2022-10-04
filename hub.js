@@ -10,17 +10,16 @@ eventX.on('pickup', pickupHandler);
 eventX.on('in-transit', inTransitHandler);
 eventX.on('delivered', deliveredHandler);
 
-const chance = new Chance();
-
-const payload = {
-  store: chance.company(),
-  orderID: uuidv4(),
-  customer: chance.name(),
-  address: chance.address(),
-};
 
 setInterval(() => {
   console.log('------------new Interval----------');
+  const chance = new Chance();
+  const payload = {
+    store: chance.company(),
+    orderID: uuidv4(),
+    customer: chance.name(),
+    address: chance.address(),
+  };
   eventX.emit('pickup', payload);
 }, 9000);
 
