@@ -43,8 +43,9 @@ Other Routes
 
 #### UML Diagram
 
-<!-- ![UML Diagram](11%20UML.png) -->
-![UML DIagram](11UML2.png)
+![Class 11a](11%20UML.png)
+![Class 11b](11UML2.png)
+![Class 12](/progression/12UML.png)
 
 Diagram created with [MIRO](https://www.miro.com/)
 
