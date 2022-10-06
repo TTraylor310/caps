@@ -40,6 +40,7 @@ caps.on('connection', (socket) => {
   socket.on('in-transit', (payload) => {
     // console.log('TRANSIT PAYLOAD INFO:', payload);
     console.log(`DRIVER: picked up order# ${payload.order.orderID}.`);
+    delete queueList.orderList[payload.id];
     socket.broadcast.emit('in-transit', payload);
   });
 
@@ -56,6 +57,7 @@ caps.on('connection', (socket) => {
     console.log('GET PROOF');
     Object.keys(queueList.orderList).forEach(id => {
       console.log('Order List info...', {id, order: queueList.orderList[id]});
+      socket.emit('pickup', {id, order: queueList.orderList[id]});
     });
   });
 
