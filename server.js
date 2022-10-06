@@ -6,6 +6,10 @@ const server = new Server(PORT);
 
 const caps = server.of('/caps');
 
+server.on('connection', (socket) => {
+  console.log('Socket connect to Event Server!', socket.id);
+});
+
 caps.on('connection', (socket) => {
   console.log('Socket connected to CAPS namespace', socket.id);
 
