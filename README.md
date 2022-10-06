@@ -1,4 +1,4 @@
-# LAB - Class 10
+# LAB - Class 11, 12, 13
 
 ## Project: Code Academy Parcel Service (CAPS)
 
@@ -9,37 +9,13 @@
 A real-time service that allows for vendors, such as flower shops or restaurants, to alert a system of a package needing to be delivered, for drivers to instantly see what’s in their pickup queue, and then to alert the vendors as to the state of the deliveries (in transit, and then delivered).
 
 - [CI/CD GitHub Actions](https://github.com/TTraylor310/caps/actions)
-<!-- - [Back-end server url production](https://bt-auth-api-88.herokuapp.com/) -->
-
-<!-- ### Setup -->
 
 #### Running the app
 
-`node hub.js` will run through events with programmed times
+`node server.js` will start the server to listen
+`node driverHub/driverHub.js` will start the driver module to listen
+`node vendor/vendorHub.js` will start the orders and the flow of information
 
-<!-- #### Features / Routes -->
-
-<!-- Model Routes
-
-- GET : `/movies` or `/music`
-- GET : `/movies/id` or `/music/id`
-- POST : `/movies` or `/music`
-- PUT : `/movies/id` or `/music/id`
-- DELETE : `/movies/id` or `/music/id`
-
-Auth Routes
-
-- POST : `/signup`
-- POST : `/signin`
-- GET : `/users`
-
-Other Routes
-
-- GET : `*` - catch-all route -->
-
-<!-- #### Tests -->
-
-<!-- - `npm test` to run tests -->
 
 #### UML Diagram
 
