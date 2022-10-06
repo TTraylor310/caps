@@ -13,14 +13,15 @@ A real-time service that allows for vendors, such as flower shops or restaurants
 #### Running the app
 
 `node server.js` will start the server to listen
-`node driverHub/driverHub.js` will start the driver module to listen
-`node vendor/vendorHub.js` will start the orders and the flow of information
+`node driver/index.js` will start the driver module to listen
+`node vendor/index.js` will start the orders and the flow of information.
 
 #### UML Diagram
 
 ![Class 11a](11%20UML.png)
 ![Class 11b](11UML2.png)
 ![Class 12](/progression/12UML.png)
+<!-- ![Class 13]() -->
 
 Diagram created with [MIRO](https://www.miro.com/)
 
