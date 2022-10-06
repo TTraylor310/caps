@@ -25,4 +25,4 @@ A real-time service that allows for vendors, such as flower shops or restaurants
 
 Diagram created with [MIRO](https://www.miro.com/)
 
-<!-- #### Credits: []() -->
+#### Credits: Code reviews in the morning
