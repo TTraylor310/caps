@@ -16,7 +16,6 @@ A real-time service that allows for vendors, such as flower shops or restaurants
 `node driverHub/driverHub.js` will start the driver module to listen
 `node vendor/vendorHub.js` will start the orders and the flow of information
 
-
 #### UML Diagram
 
 ![Class 11a](11%20UML.png)

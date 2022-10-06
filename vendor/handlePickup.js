@@ -1,21 +1,22 @@
 'use strict';
-const { v4: uuidv4 } = require('uuid');
+const uuid = require('uuid').v4;
 const Chance = require('chance');
 const chance = new Chance();
-const joinRoom = require('./joinRoom');
+// const joinRoom = require('./joinRoom');
 
-function pickupHandler (socket) {
+function handlePickup (socket) {
   let payload = {
     store: chance.company(),
-    orderID: uuidv4(),
+    orderID: uuid(),
     customer: chance.name(),
     address: chance.address(),
   };
   console.log('------------new order------------');
   console.log(`Order: ${payload.orderID}`);
-  console.log(`by ${payload.customer} located at ${payload.address}. Thank you.`)
-  joinRoom(socket,payload);
+  console.log(`by ${payload.customer} located at ${payload.address}`)
+  console.log('---------------------------------')
+  // joinRoom(socket,payload);
   socket.emit('pickup', payload);
 }
 
-module.exports = pickupHandler;
+module.exports = handlePickup;
