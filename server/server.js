@@ -1,6 +1,7 @@
 'use strict';
 
 const { Server } = require('socket.io');
+const Queue = require('./lib/queue');
 const PORT = process.env.PORT || 3002;
 const server = new Server(PORT);
 
@@ -13,6 +14,7 @@ const caps = server.of('/caps');
 console.log('Operating Tray Wk3 Server');
 const queueList = {
   orderList: {},
+  // driverList: {},
 };
 
 caps.on('connection', (socket) => {
@@ -29,6 +31,15 @@ caps.on('connection', (socket) => {
   // });
 
   socket.on('pickup', (payload) => {
+
+    // let currentQueue = messageQueue.rad(payload.queueId);
+    // if(!currentQueue){
+    //   let queueKey = messageQueue.store(payload.queueId, new Queue());
+    //   currentQueue = messageQueue.read(queueKey);  
+    // }
+    // currentQueue.store(payload.messageId)
+
+
 
     let id = payload.orderID;
     queueList.orderList[id] = payload;
