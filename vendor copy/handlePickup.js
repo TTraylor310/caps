@@ -14,7 +14,7 @@ function handlePickup (socket) {
   console.log('------------new order------------');
   console.log(`Order: ${payload.orderID}`);
   console.log(`by ${payload.customer} located at ${payload.address}`)
-  console.log('---------------------------------')
+  console.log('---------------------------------');
   // joinRoom(socket,payload);
   socket.emit('pickup', payload);
 }
