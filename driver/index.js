@@ -4,5 +4,5 @@ const socket = client.connect('http://localhost:3002/caps');
 
 let handlePickup = require('./handlePickup');
 
-socket.emit('GETALL');
+socket.emit('driverGETALL');
 socket.on('pickup', handlePickup(socket));

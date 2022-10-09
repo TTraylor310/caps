@@ -1,7 +1,6 @@
 'use strict';
 
 const { Server } = require('socket.io');
-const Queue = require('./lib/queue');
 const PORT = process.env.PORT || 3002;
 const server = new Server(PORT);
 
@@ -13,7 +12,7 @@ const caps = server.of('/caps');
 
 console.log('Operating Tray Wk3 Server');
 const queueList = {
-  orderList: {},
+  orderListForDriver: {},
   // driverList: {},
 };
 
@@ -31,44 +30,38 @@ caps.on('connection', (socket) => {
   // });
 
   socket.on('pickup', (payload) => {
-
-    // let currentQueue = messageQueue.rad(payload.queueId);
-    // if(!currentQueue){
-    //   let queueKey = messageQueue.store(payload.queueId, new Queue());
-    //   currentQueue = messageQueue.read(queueKey);  
-    // }
-    // currentQueue.store(payload.messageId)
-
-
-
     let id = payload.orderID;
-    queueList.orderList[id] = payload;
+    queueList.orderListForDriver[id] = payload;
     // adds order to List based on orderID containing payload info
-    console.log(`Order# ${payload.orderID} by ${payload.customer} placed.`);
+    console.log(`VENDOR ${payload.store}: --NEW ORDER-- # ${payload.orderID} by ${payload.customer}`);
+    console.log('--------------------------------------');
     socket.broadcast.emit('pickup', {id, order: payload});
   });
 
   socket.on('in-transit', (payload) => {
     // console.log('TRANSIT PAYLOAD INFO:', payload);
     console.log(`DRIVER: picked up order# ${payload.order.orderID}.`);
-    delete queueList.orderList[payload.id];
+    console.log('--------------------------------------');
+    delete queueList.orderListForDriver[payload.id];
     socket.broadcast.emit('in-transit', payload);
   });
 
   socket.on('delivered', (payload) => {
-    console.log(`Order# ${payload.order.orderID} was delivered.`);
-    // socket.broadcast.emit('delivered', payload);
+    console.log(`DRIVER: delivered order# ${payload.order.orderID}`);
+    console.log('--------------------------------------');
+    socket.broadcast.emit('delivered', payload);
   });
 
   socket.on('order-done', (payload) => {
-    console.log(`Order# ${payload.order.orderID} completed.`);
+    console.log(`VENDOR ${payload.order.store}: Order# ${payload.order.orderID} completed.`);
+    console.log('--------------------------------------');
   });
 
-  socket.on('GETALL', (payload) => {
-    console.log('GET PROOF');
-    Object.keys(queueList.orderList).forEach(id => {
-      console.log('Order List info...', {id, order: queueList.orderList[id]});
-      socket.emit('pickup', {id, order: queueList.orderList[id]});
+  socket.on('driverGETALL', (payload) => {
+    console.log('GET Orders for Drivers:');
+    Object.keys(queueList.orderListForDriver).forEach(id => {
+      console.log('Order List info...', {id, order: queueList.orderListForDriver[id]});
+      socket.emit('pickup', {id, order: queueList.orderListForDriver[id]});
     });
   });
 
